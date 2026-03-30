@@ -49,7 +49,7 @@ The database is fully normalized with proper primary and foreign key constraints
 
 ---
 
-## ⚠️ Database Note
+## Database Note
 The SQL sample data are **not included** in this repository.
 The database structure is currently under active development and is subject to change as the project evolves.
 

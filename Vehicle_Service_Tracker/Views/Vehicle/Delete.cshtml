@@ -1,0 +1,39 @@
+﻿@model Vehicle_Service_Tracker.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Delete Vehicle";
+}
+
+<h2 class="text-danger mb-4">Delete Vehicle</h2>
+
+<div class="alert alert-warning">
+    <strong>Warning:</strong> This action cannot be undone.
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">
+            @Model.Year @Model.Make @Model.Model
+        </p>
+
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <img src="@Model.ImagePath"
+                 class="img-thumbnail mt-2"
+                 style="max-height:200px;" />
+        }
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="VehicleId" />
+
+    <button type="submit" class="btn btn-danger">
+        Yes, Delete
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary ms-2">
+        Cancel
+    </a>
+</form>

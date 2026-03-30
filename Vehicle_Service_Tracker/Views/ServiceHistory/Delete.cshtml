@@ -1,0 +1,51 @@
+﻿@model Vehicle_Service_Tracker.Models.ServiceHistory
+
+@{
+    ViewData["Title"] = "Delete Service Record";
+}
+
+<h2 class="text-danger mb-4">Delete Service Record</h2>
+
+<div class="alert alert-warning">
+    <strong>Warning:</strong> This action cannot be undone.
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">
+            @Model.ServiceType
+        </h5>
+
+        <p class="mb-1">
+            Date: @Model.ServiceDate.ToShortDateString()
+        </p>
+        <p class="mb-1">
+            Mileage: @Model.MileageAtService km
+        </p>
+        <p class="mb-1">
+            Cost: @Model.Cost.ToString("C")
+        </p>
+
+        @if (!string.IsNullOrEmpty(Model.Description))
+        {
+            <p class="mt-2 text-muted">
+                @Model.Description
+            </p>
+        }
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ServiceHistoryId" />
+
+    <button type="submit" class="btn btn-danger">
+        Yes, Delete
+    </button>
+
+    <a asp-action="Index"
+       asp-route-vehicleId="@Model.VehicleId"
+       class="btn btn-secondary ms-2">
+        Cancel
+    </a>
+</form>

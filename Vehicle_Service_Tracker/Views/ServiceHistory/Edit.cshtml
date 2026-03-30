@@ -1,0 +1,64 @@
+﻿@model Vehicle_Service_Tracker.Models.ServiceHistory
+
+@{
+    ViewData["Title"] = "Edit Service Record";
+}
+
+<h2 class="mb-4">Edit Service Record</h2>
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="ServiceHistoryId" />
+    <input type="hidden" asp-for="VehicleId" />
+
+    <div class="mb-3">
+        <label asp-for="ServiceDate" class="form-label"></label>
+        <input asp-for="ServiceDate" type="date" class="form-control" />
+        <span asp-validation-for="ServiceDate" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ServiceType" class="form-label"></label>
+        <input asp-for="ServiceType" class="form-control" />
+        <span asp-validation-for="ServiceType" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MileageAtService" class="form-label"></label>
+        <input asp-for="MileageAtService" class="form-control" />
+        <span asp-validation-for="MileageAtService" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Cost" class="form-label"></label>
+        <input asp-for="Cost" class="form-control" />
+        <span asp-validation-for="Cost" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ServiceProvider" class="form-label"></label>
+        <input asp-for="ServiceProvider" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Save Changes
+    </button>
+
+    <a asp-action="Index"
+       asp-route-vehicleId="@Model.VehicleId"
+       class="btn btn-secondary ms-2">
+        Cancel
+    </a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
